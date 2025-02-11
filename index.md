@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="公告">
+    <meta name="keywords" content="花葬隆冬">
+    <meta name="author" content="花葬隆冬">
+    <title>当原则遇上心动就会不停的破例</title>
+    <style>
+        * {
+            word-wrap: break-word;
+        }
+
+        body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, html, iframe, input, li, ol, p, pre, td, textarea, th, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, button, input, select, td, textarea, th {
+            font-family: 华文楷体, Hiragino Sans GB, Helvetica, Arial, sans-serif, 微软雅黑, 宋体, 黑体, Microsoft Yahei, SimSun, sans-serif, Helvetica Neue, Helvetica, tahoma, arial, Verdana, sans-serif, WenQuanYi Micro Hei, Oxygen-Sans;
+            font-size: 12px;
+            color: #07AD2EFF;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-image: #a66c3d;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .release {
+            position: relative;
+            border-radius: 12px;
+            width: 95%;
+            max-width: 550px;
+            margin: auto;
+        }
+
+        .body {
+            background: #ffffff;
+            border-radius: 12px;
+            margin-top: 80px;
+        }
+
+        YourName {
+            background: linear-gradient(135deg, #0eaf6d, #ff6ac6 25%, #147b96 50%, #e6d205 55%, #2cc4e0 60%, #8b2ce0 80%, #ff6384 95%, #08dfb4);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-background-size: 200% 100%;
+            background-size: 200% 100%;
+            -webkit-animation: flowCss 12s infinite linear;
+            animation: flowCss 12s infinite linear;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            animation-name: flowCss;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes flowCss {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .body .image {
+            text-align: center;
+        }
+
+        .body .image img {
+            border-radius: 50%;
+            width: 100px;
+            padding: 1px;
+            background-color: #fff;
+            margin-top: -50px;
+            box-shadow: 0px 5px 30px 0px #6c44fc, 0px 0px 0px 5px rgba(107, 74, 255, 0.5);
+        }
+
+        .body .title {
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .body .title h2 {
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 24px;
+            color: #07AD2EFF;
+            margin-bottom: 15px;
+        }
+
+        .body .title p {
+            font-size: 19px;
+            padding-top: 20px;
+            color: #000000;
+            letter-spacing: 2px;
+        }
+
+        .main .links {
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .main .links ul {
+            display: block;
+        }
+
+        .main .links ul li {
+            list-style: none;
+            width: 30%;
+            text-align: center;
+            padding: 10px 0;
+            margin: 0 1.666%;
+            float: left;
+        }
+
+        .hover-zoom:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .main .links ul li a {
+            text-decoration: none;
+            display: block;
+            padding: 12px 0;
+            font-size: 16px;
+            color: #fdfdfd;
+            margin: 2px;
+            border-radius: 12px;
+            transition: all .3s ease;
+            letter-spacing: 2px;
+            font-weight: 700;
+            background: linear-gradient(to right, #6bc3f9, #75a6f4, #9c85f8);
+            position: relative;
+            z-index: 1;
+        }
+
+        .main .tips {
+            text-align: center;
+            padding: 10px 0 20px;
+        }
+
+        .main .tips p {
+            font-size: 12px;
+            color: #959595;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            line-height: 10px;
+        }
+
+        @media screen and (max-width: 550px) {
+            .body .image img {
+                width: 80px;
+                margin-top: -40px;
+            }
+
+            .body .title {
+                padding: 25px 0;
+            }
+
+            .body .title h2 {
+                font-size: 24px;
+            }
+
+            .body .title p {
+                font-size: 14px;
+                letter-spacing: .8px;
+                padding-top: 15px;
+            }
+
+            .main .links ul li {
+                width: 30.555%;
+            }
+
+            .main .links ul li:nth-child(3n) {
+                margin-right: 0;
+            }
+
+            .main .links ul li a {
+                font-size: 16px;
+                font-weight: 400;
+                border-radius: 12px;
+                letter-spacing: 2px;
+            }
+
+            .main .tips {
+                padding: 20px 20px 10px;
+            }
+
+            .main .tips p {
+                font-size: 16px;
+            }
+        }
+
+        .bordered-box {
+            border: 2px solid #fdabab;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 2;
+        }
+
+        Label {
+            margin: 20px 0;
+            border: 2px solid #8a8989;
+            border-radius: 8px;
+            padding: 5px;
+            font-size: 8px;
+            font-weight: bold;
+            color: #07AD2EFF;
+            line-height: 2;
+            margin-top: 4px;
+            margin-left: 4px;
+            text-align: center;
+        }
+        
+        .music-button {
+            display: inline-block;
+            padding: 5px 15px;
+            border: 2px solid #FDABAB;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: transparent;
+            cursor: pointer;
+            position: relative;overflow: hidden;
+            transition: transform 0.3s ease;
+            margin: 10px 0;
+            border-radius: 12px;
+        }
+
+        .music-button span {
+            background: linear-gradient(135deg, #0eaf6d, #ff6ac6 25%, #147b96 50%, #e6d205 55%, #2cc4e0 60%, #8b2ce0 80%, #ff6384 95%, #08dfb4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 100%;
+            animation: flowCss 5s infinite linear;
+        }
+
+        .music-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .music-button {
+                border: 2px solid #FDABAB;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="release">
+        <div class="body">
+            <div class="image">
+                <img class="hover-zoom" src="http://q.qlogo.cn/headimg_dl?dst_uin=2233715578&spec=640&img_type=jpg">
+            </div>
+            <div class="title">
+                <YourName>@花葬隆冬</YourName>
+                <p></p>
+                <script>
+                    const tags = ["I", "T", "Z", "凌梦"];
+                    tags.forEach(tag => {
+                        document.write(`<Label>${tag}</Label>`);
+                    });
+                </script>
+            </div>
+
+            <div class="main">
+                <div class="tips">
+                    <div style="display: flex; align-items: center; justify-content: center; position: relative;">
+                        <h2 style="color: #ff3e3e; margin: 0 auto;">【公告】</h2>
+                        <button onclick="document.getElementById('musicPlayer').play();" class="music-button" style="position: absolute; right: 0;">
+                            <span> Music </span>
+                        </button>
+                    </div>
+                    <div class="bordered-box" style="color: #3ebbbf; text-align: left;">
+                        <span style="color: #D01EB0; font-weight: bold; font-size: 16px;">当原则遇上心动就会不停的破例</span>
+                        <p></p>
+                        <span style="color: #131313; font-weight: bold; font-size: 16px;">资源免责声明：</span>
+                        <p></p>
+                        ①该资源完全免费，若是付费购买所得即是被倒卖软件的骗了，建议退款举报处理。
+                        <p></p>
+                        ②该资源仅供学习交流仅供学习和技术交流，不得非法使用或商用，若侵犯了您的权益，请联系作者删除。
+                        <p></p>
+                        ③请尊重开发者的劳动成果，如需要更好的服务和安全性与稳定性，请支持正版软件。
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <audio id="musicPlayer" src="https://sharefs.tx.kugou.com/202502110342/d299e409f539ae6c414576ae44748d74/v3/fe1f533f9bd546c2a0644d1bbf402f65/yp/full/ap1000_us0_pi409_mx673873937_s3154585105.mp3" preload="none"></audio>
+</body>
+</html>
