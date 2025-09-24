@@ -2,87 +2,67 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
   <title>问卷调查</title>
 
-  <!-- 样式 -->
+  <!-- ===== 基础样式 ===== -->
   <style>
+    :root{
+      --btn-bg:#c9b7fb;
+      --btn-hover:#b19bff;
+    }
+    body{
+      margin:0;
+      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+      background:#f5f5f7;
+      display:flex;justify-content:center;align-items:center;min-height:100vh;
+    }
     /* 弹窗遮罩 */
     .popup{
-      position:fixed;
-      inset:0;
+      position:fixed;inset:0;
       background:rgba(0,0,0,.45);
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      display:flex;align-items:center;justify-content:center;
       z-index:9999;
     }
     .popup-box{
-      background:#fff;
-      border:2px solid #ead9ff;
-      padding:30px;
-      border-radius:20px;
-      text-align:center;
-      box-shadow:0 10px 30px rgba(0,0,0,.2);
-      max-width:90%;
+      background:#fff;border:2px solid #ead9ff;
+      padding:30px;border-radius:20px;text-align:center;
+      box-shadow:0 10px 30px rgba(0,0,0,.2);max-width:90%;
     }
-
-    /* 其它沿用你原来的 */
-    body{
-      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-      background:#f5f5f7;
-      margin:0;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      min-height:100vh;
+    /* 统一按钮外观 */
+    .ui-btn{
+      margin-top:20px;border:none;border-radius:12px;
+      background:var(--btn-bg);color:#fff;font-size:16px;font-weight:600;
+      padding:12px 28px;cursor:pointer;transition:background .3s;
     }
-    .container{
-      background:#fff;
-      border-radius:20px;
-      box-shadow:0 10px 30px rgba(0,0,0,.1);
-      padding:40px;
-      width:90%;
-      max-width:500px;
-      text-align:center;
-    }
-    #question{font-size:24px;color:#333;margin-bottom:30px;font-weight:600;}
+    .ui-btn:hover{background:var(--btn-hover);}
+    /* 输入框容器：真正居中 */
+    .input-container{margin:0 auto 25px;width:100%;}
     #answer{
-      width:100%;
-      padding:15px 20px;
-      border:2px solid #e0e0e0;
-      border-radius:12px;
-      font-size:16px;
-      transition:all .3s ease;
-      transform:scale(.8);
-      opacity:0;
+      width:100%;padding:14px 18px;border:2px solid #e0e0e0;
+      border-radius:12px;font-size:16px;transition:border-color .3s;
+      transform:scale(.8);opacity:0;
     }
-    #answer.animate{animation:scaleIn .5s ease-out forwards;}
+    #answer.animate{animation:scaleIn .5s forwards;}
     @keyframes scaleIn{
-      from{transform:scale(.8);opacity:0;}
       to{transform:scale(1);opacity:1;}
     }
-    #nextBtn{
-      background:#c9b7fb;
-      color:#fff;
-      border:none;
-      padding:15px 30px;
-      border-radius:12px;
-      font-size:16px;
-      font-weight:600;
-      cursor:pointer;
-      width:100%;
-      margin-top:20px;
+    @keyframes shake{
+      0%,100%{transform:translateX(0);}
+      25%{transform:translateX(-6px);}
+      75%{transform:translateX(6px);}
     }
-    #nextBtn:hover{background:#b19bff;}
+    .shake{animation:shake .3s 2;}
+    /* 主卡片 */
+    .container{
+      background:#fff;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.1);
+      padding:40px;width:90%;max-width:500px;text-align:center;
+    }
+    #question{font-size:24px;color:#333;margin-bottom:25px;font-weight:600;}
+    /* 成功页 */
     .youscreen{
-      position:fixed;
-      inset:0;
-      background:#ffcad382;
-      display:none;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
+      position:fixed;inset:0;background:#ffcad382;
+      display:none;flex-direction:column;align-items:center;justify-content:center;
     }
     .yes-text{font-size:7vw;color:#6c5ce7;margin-bottom:30px;}
     .yes-image{max-width:80%;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.2);}
@@ -90,37 +70,37 @@
 </head>
 
 <body>
-  <!-- 音频 -->
+  <!-- ===== 音频 ===== -->
   <audio id="music" src="music/music.mp3"></audio>
   <audio id="musichp" src="music/music2.mp3" loop></audio>
 
-  <!-- 问卷主体 -->
+  <!-- ===== 问卷主体 ===== -->
   <div class="container">
     <div id="question"></div>
     <div class="input-container">
       <input type="text" id="answer" autocomplete="off" placeholder="请输入你的答案...">
     </div>
-    <button onclick="nextQuestion()" id="nextBtn">下一个</button>
+    <button id="nextBtn" class="ui-btn">下一个</button>
   </div>
 
-  <!-- 成功页 -->
+  <!-- ===== 成功页 ===== -->
   <div class="youscreen">
     <h1 class="yes-text">我也喜欢你~</h1>
     <img src="picture/gif.gif" alt="HAPI" class="yes-image">
   </div>
 
-  <!-- 弹窗（默认隐藏） -->
-  <div class="popup" id="welcomePopup" style="display:none">
+  <!-- ===== 初始弹窗 ===== -->
+  <div class="popup" id="welcomePopup">
     <div class="popup-box">
       一定要说真话哦<br/>......<br/>最喜欢你了
       <br><br>
-      <button onclick="closeWelcome()">关闭</button>
+      <button class="ui-btn" onclick="closeWelcome()">关闭</button>
     </div>
   </div>
 
-  <!-- 逻辑 -->
+  <!-- ===== 核心逻辑 ===== -->
   <script>
-    /* ====== 配置 ====== */
+    /* ===== 配置 ===== */
     const messagest   = "一定要说真话哦<br/>......<br/>最喜欢你了";
     const answerst    = "你<br/>喜欢你<br/>是你<br/>you";
     const questionst  = "最喜欢的歌是什么?<br/>最喜欢的食物是什么?<br/>最喜欢的颜色是哪个?<br/>最喜欢的季节是什么?<br/>最喜欢的动物是什么?<br/>最喜欢的人是谁?";
@@ -128,13 +108,13 @@
     const textstw     = "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈<br/>我最愛你了....<br/>你以为你能逃得掉吗<br/>没用的...没用的...没用的...<br/>一切都已经太迟了<br/>只准喜歡我....<br/>我們註定是要在一起的<br/>爱你...你...爱...爱你...";
     const opportunity = "再给你一次机会";
 
-    /* ====== 初始化 ====== */
+    /* ===== 基础变量 ===== */
     const questions   = questionst.split('<br/>');
     let   currentStep = 0;
     const music       = document.getElementById('music');
     const musichp     = document.getElementById('musichp');
 
-    /* 等待所有资源加载完再显示弹窗 */
+    /* ===== 交互控制 ===== */
     window.addEventListener('load', () => {
       document.getElementById('welcomePopup').style.display = 'flex';
     });
@@ -142,36 +122,96 @@
       document.getElementById('welcomePopup').style.display = 'none';
       document.getElementById('answer').classList.add('animate');
     }
-
-    /* ====== 问卷流程 ====== */
     function updateQuestion(){
       document.getElementById('question').textContent = questions[currentStep];
       document.getElementById('answer').value = '';
       document.getElementById('answer').focus();
     }
-    function nextQuestion(){
-      if (currentStep === questions.length - 1){
-        checkFinalAnswer();
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      const val = document.getElementById('answer').value.trim();
+      if (!val) {                  // 空输入抖动提示
+        const box = document.getElementById('answer');
+        box.classList.add('shake');
+        setTimeout(() => box.classList.remove('shake'), 600);
+        return;
+      }
+      if (currentStep === questions.length - 1) {
+        checkFinalAnswer(val);
         return;
       }
       currentStep++;
       updateQuestion();
-    }
-    function checkFinalAnswer(){
-      const val = document.getElementById('answer').value.trim().toLowerCase();
-      const ok  = answerst.split('<br/>').some(v=>val.includes(v.toLowerCase()));
-      if (ok){
-        /* 成功分支 */
+    });
+    function checkFinalAnswer(val) {
+      const ok = answerst.split('<br/>').some(v => val.toLowerCase().includes(v.toLowerCase()));
+      if (ok) {                    // 甜蜜结局
         document.querySelector('.container').style.display = 'none';
         document.querySelector('.youscreen').style.display = 'flex';
         musichp.play();
-      }else{
-        /* 失败分支：简单闪红即可，别用死循环 */
-        document.body.style.animation = 'shake .3s 2';
-        setTimeout(()=> document.body.style.animation='',600);
+      } else {                     // 病娇分支
+        triggerApocalypse();
       }
     }
     updateQuestion();
+
+    /* ===== 病娇特效（异步插入，不阻塞解析） ===== */
+    function triggerApocalypse() {
+      music.play();
+      document.body.style.animation = 'shake .3s 2';
+      setTimeout(() => document.body.style.animation = '', 600);
+
+      /* 以下动态插入“血字”“血雨”等 DOM & 样式，代码压缩成一行避免篇幅过长 */
+      const css = document.createElement('style');
+      css.textContent = `
+        .blood-rain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;}
+        .blood-drop{position:absolute;width:2px;height:25px;background:#c70000;opacity:.7;animation:fall 1s linear infinite;}
+        @keyframes fall{to{transform:translateY(120vh);}}
+        .blood-splatter{position:absolute;width:8px;height:8px;background:#c70000;border-radius:50%;opacity:.8;animation:splat .4s ease-out forwards;}
+        @keyframes splat{to{transform:scale(3);opacity:0;}}
+        .blood-text{position:fixed;color:#c70000;font-weight:700;z-index:9999;animation:fade 8s forwards;}
+        @keyframes fade{0%{opacity:0;transform:translateY(0);}10%{opacity:1;}100%{opacity:0;transform:translateY(30px);}}
+      `;
+      document.head.appendChild(css);
+
+      const rainBox = document.createElement('div');
+      rainBox.className = 'blood-rain';
+      document.body.appendChild(rainBox);
+
+      /* 血雨定时器 */
+      const rainID = setInterval(() => {
+        const drop = document.createElement('div');
+        drop.className = 'blood-drop';
+        drop.style.left = Math.random() * 100 + '%';
+        drop.style.animationDuration = (Math.random() * .5 + .5) + 's';
+        rainBox.appendChild(drop);
+        setTimeout(() => drop.remove(), 1000);
+      }, 30);
+
+      /* 血字 + 血点 */
+      const texts = textstw.split('<br/>');
+      const textID = setInterval(() => {
+        const t = document.createElement('div');
+        t.className = 'blood-text';
+        t.style.left = Math.random() * 90 + '%';
+        t.style.top = Math.random() * 90 + '%';
+        t.style.fontSize = (Math.random() * 10 + 18) + 'px';
+        t.textContent = texts[Math.floor(Math.random() * texts.length)];
+        document.body.appendChild(t);
+        setTimeout(() => t.remove(), 8000);
+      }, 400);
+
+      /* 持续 10 秒后自动清场 */
+      setTimeout(() => {
+        clearInterval(rainID);
+        clearInterval(textID);
+        setTimeout(() => {
+          rainBox.remove();
+          css.remove();
+          /* 恢复可交互 */
+          document.querySelectorAll('.blood-text,.blood-splatter').forEach(el => el.remove());
+        }, 2000);
+      }, 10000);
+    }
   </script>
 </body>
 </html>
